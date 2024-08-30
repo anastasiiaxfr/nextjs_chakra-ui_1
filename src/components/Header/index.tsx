@@ -1,10 +1,15 @@
 // components/Header.tsx
-import { Box } from '@chakra-ui/react';
+'use client'
+import { Box, Flex } from '@chakra-ui/react';
+import ThemeSwitcher from '@/components/ThemeSwitcher'
 
 const Header = () => {
     return (
-        <Box as="header" bg="gray.200" p={4}>
-            <h1>Header Content</h1>
+        <Box as="header" p={4}>
+            <Flex align="center" justify="space-between">
+                <h1>Header Content</h1>
+                <ThemeSwitcher />
+            </Flex>
         </Box>
     );
 };

@@ -9,5 +9,7 @@ interface ProvidersProps {
 }
 
 export function Providers({ children }: ProvidersProps) {
-    return <ChakraProvider theme={theme}>{children}</ChakraProvider>
+    return <ChakraProvider resetCSS theme={theme}>
+        {children}
+    </ChakraProvider>
 }

@@ -1,4 +1,4 @@
-import { Box, Flex, Heading } from '@chakra-ui/react'
+import { Box, Flex, Heading} from '@chakra-ui/react'
 import PageContainer from '@/components/Layout/Container'
 
 export default function Banner() {
@@ -13,7 +13,7 @@ export default function Banner() {
     return (
         <Box as="section">
             <PageContainer>
-                <Flex align="center" bgGradient='linear(120deg, #9C27B0, #673AB7 66%, #3F51B5)' color="#FFF"
+                <Flex align="center" bg='grad.1' color="#FFF"
                     py={{ base: 14, lg: 24 }}
                     px={12}
                     w="full"

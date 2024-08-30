@@ -1,11 +1,18 @@
 // app/fonts.ts
-import { Rubik } from "next/font/google";
+import { Montserrat, Lato } from "next/font/google";
 
-const rubik = Rubik({
+const montserrat = Montserrat({
   subsets: ["latin"],
-  variable: "--font-rubik",
+  variable: "--font-montserrat",
+});
+
+const lato = Lato({
+  subsets: ["latin"],
+  variable: "--font-lato",
+  weight: ["400", "700", "900"],
 });
 
 export const fonts = {
-  rubik,
+  montserrat,
+  lato,
 };
