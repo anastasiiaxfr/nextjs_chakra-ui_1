@@ -17,13 +17,13 @@ const soc = [
         icon: <Icon2 width="24" height="24" />,
     },
     {
-        url: "Youtube",
-        title: "Icon 3",
+        url: "#",
+        title: "Youtube",
         icon: <Icon3 width="24" height="24" />,
     },
     {
-        url: "TikTok",
-        title: "Icon 4",
+        url: "#",
+        title: "TikTok",
         icon: <Icon4 width="24" height="24" />,
     },
 ];
@@ -48,6 +48,7 @@ export default function Socials() {
                     </PopoverTrigger>
                     <PopoverContent
                         bg='main'
+                        color='white'
                         px={3}
                         py={1}
                         w="120"

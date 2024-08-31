@@ -42,6 +42,7 @@ export default function CardItem({ data }: any) {
                     transform: 'translate(-50%, -50%)',
                     width: 12,
                     height: 12,
+                    color: 'white',
                     borderRadius: 'full',
                     background: useColorModeValue('main', 'main'),
                     border: '1px solid',
