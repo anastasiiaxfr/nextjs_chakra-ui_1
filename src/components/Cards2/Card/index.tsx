@@ -29,7 +29,7 @@ export default function CardItem({ data }: any) {
       }}
       textAlign="center"
     >
-      <LinkOverlay href={`#`}>
+      <LinkOverlay href={`/teams/${data.team_id}`}>
         <AspectRatio
           ratio={2}
           overflow="hidden"
@@ -47,7 +47,7 @@ export default function CardItem({ data }: any) {
             lineHeight="100%"
             textTransform="uppercase"
           >
-            {data.name}
+            {data.name || "N/D"}
           </Text>
         </AspectRatio>
 
@@ -74,7 +74,7 @@ export default function CardItem({ data }: any) {
           </Flex>
           /
           <Text as="span" fontWeight="normal">
-            {data.tag}
+            {data.tag || "N/D"}
           </Text>
         </Flex>
       </LinkOverlay>

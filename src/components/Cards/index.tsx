@@ -1,11 +1,25 @@
-import { SimpleGrid } from '@chakra-ui/react'
-import Card from "./Card"
+import React from 'react';
+import { SimpleGrid } from '@chakra-ui/react';
+import Card from './Card';
 
-export default function Cards({ data }: any) {
-    return (
-        <SimpleGrid minChildWidth='225px' spacing='20px' w='100%'>
-            {data.slice(0, 12).map((i: any, ind: number) => (
-                <Card key={ind} data={i} />))}
-        </SimpleGrid>
-    )
+interface CardData {
+    id: string;
 }
+
+interface CardsProps {
+    data?: CardData[];
+}
+
+const Cards: React.FC<CardsProps> = ({ data = [] }) => {
+    const items = Array.isArray(data) ? data : [];
+
+    return (
+        <SimpleGrid minChildWidth='220px' spacing='20px' w='100%'>
+            {items.slice(0, 12).map((item) => (
+                <Card key={item.id} data={item} />
+            ))}
+        </SimpleGrid>
+    );
+};
+
+export default Cards;

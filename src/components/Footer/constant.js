@@ -4,30 +4,30 @@ const nav1 = [
     label: "Home",
   },
   {
-    url: "/",
-    label: "ProPlayers",
+    url: "/players",
+    label: "Players",
   },
   {
-    url: "/",
+    url: "/teams",
     label: "Teams",
   },
 ];
 
 const nav2 = [
   {
-    url: "/",
+    url: "/faq",
     label: "FAQ",
   },
   {
-    url: "/",
+    url: "/terms",
     label: "Terms of service",
   },
   {
-    url: "/",
+    url: "/privacy",
     label: "Privacy policy",
   },
   {
-    url: "/",
+    url: "/cookie",
     label: "Cookie",
   },
 ];

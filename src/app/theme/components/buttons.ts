@@ -40,7 +40,7 @@ const Button = {
     dark: (props) => ({
       padding: "0.5em 1.5em",
       color: mode("white", "dark")(props),
-      bgColor: mode("dark.2", "light.2")(props),
+      bgColor: mode("dark.2", "white")(props),
       border: "2px solid",
       borderColor: mode("dark.2", "light.2")(props),
       _hover: {

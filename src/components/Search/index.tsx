@@ -23,6 +23,8 @@ import {
     HStack,
 } from "@chakra-ui/react";
 
+import { API_PLAYERS } from "@/app/constant";
+
 export default function Search() {
     const [searchValue, setSearchValue] = useState("");
     const [isOpenMenu, setIsOpenMenu] = useState(false);
@@ -33,7 +35,7 @@ export default function Search() {
     const containerRef = useRef<HTMLDivElement>(null);
 
     const inputBg = useColorModeValue('dark.2', 'transparent');
-    const inputBdHover = useColorModeValue('dark.0', 'light.2');
+    const inputBdHover = useColorModeValue('dark.1', 'light.2');
     const menuColor = useColorModeValue('gray.300', 'gray.700');
 
     // Handle input change
@@ -45,7 +47,7 @@ export default function Search() {
         if (value.length > 0) {
             setLoading(true);
             try {
-                const response = await fetch(`https://api.opendota.com/api/proPlayers`);
+                const response = await fetch(API_PLAYERS);
                 const data = await response.json();
                 setPlayers(data.filter((player: any) => player.name.toLowerCase().includes(value.toLowerCase())));
                 setError("");
@@ -105,12 +107,13 @@ export default function Search() {
                         top="100%"
                         width="full"
                         bg={useColorModeValue("dark.1", "light.0")}
+                        borderColor="transparent"
                         boxShadow="lg"
                         maxH="300px"
                         overflowY="auto"
                     >
                         {loading && <MenuItem bg="transparent" color={menuColor}>Loading...</MenuItem>}
-                        {error && <MenuItem color="red.500">{error}</MenuItem>}
+                        {error && <MenuItem bg="transparent" color={menuColor}>{error}</MenuItem>}
                         {!loading && !error && players.length === 0 && <MenuItem>No players found</MenuItem>}
                         {players.length > 0 && (
                             <>

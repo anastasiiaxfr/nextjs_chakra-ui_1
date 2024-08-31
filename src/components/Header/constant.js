@@ -4,11 +4,11 @@ const nav = [
     label: "Home",
   },
   {
-    url: "/",
+    url: "/players",
     label: "Players",
   },
   {
-    url: "/",
+    url: "/teams",
     label: "Teams",
   },
 ];

@@ -6,7 +6,6 @@ export default function Subscribe() {
     const inputBg = useColorModeValue('dark.0', 'white');
     const inputBd = useColorModeValue('dark.0', 'light.4');
     const inputBdHover = useColorModeValue('dark.0', 'light.4');
-    const inputBgHover = useColorModeValue('dark.2', 'dark.1')
 
     return (
         <Box w="full">
@@ -15,7 +14,7 @@ export default function Subscribe() {
             </Text>
             <HStack spacing={-5} w={{ lg: '75%' }} position="relative">
                 <Input placeholder="email@mail.com" type="email" bg={inputBg} borderColor={inputBd} _hover={{ borderColor: inputBdHover }} _focus={{ borderColor: inputBdHover, boxShadow: 'none' }} />
-                <Button zIndex="1" position="absolute" inset="0" left="auto" bg="main" color="white" _hover={{ background: inputBgHover }}>
+                <Button zIndex="1" position="absolute" inset="0" left="auto" variant="dark">
                     Email me
                 </Button>
             </HStack>

@@ -41,17 +41,18 @@ export default function Socials() {
                             _hover={{ color: 'main' }}
                             display="flex"
                             alignItems="center"
-                            p={1} // Padding around the icon
+                            p={1}
                         >
                             {i.icon}
                         </Box>
                     </PopoverTrigger>
                     <PopoverContent
+                        w="120"
+                        py={1}
                         bg='main'
                         color='white'
+                        borderColor="transparent"
                         px={3}
-                        py={1}
-                        w="120"
                     >
                         {i.title}
                     </PopoverContent>

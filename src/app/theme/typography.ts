@@ -11,7 +11,14 @@ const textStyles = {
     letterSpacing: "initial",
   },
   h2: {
-    fontSize: ["xl", "2xl", "2xl", "22px"],
+    fontSize: ["17px", "18px", "20px", "22px"],
+    fontWeight: "800",
+    lineHeight: "110%",
+    letterSpacing: "0.05em",
+    textTransform: "uppercase",
+  },
+  h3: {
+    fontSize: ["14px", "16px", "17px", "18px"],
     fontWeight: "800",
     lineHeight: "110%",
     letterSpacing: "0.05em",

@@ -5,6 +5,7 @@ import PageContainer from '@/components/Layout/Container';
 import Banner from "@/components/Banner"
 import Cards from "@/components/Cards"
 import Cards2 from "@/components/Cards2"
+import { API_PLAYERS, API_TEAMS } from "./constant"
 
 export const metadata: Metadata = {
   title: "Dota2Bro | Team & Players catalog",
@@ -13,10 +14,10 @@ export const metadata: Metadata = {
 
 export default async function Home() {
 
-  const getTeams = await fetch("https://api.opendota.com/api/teams");
+  const getTeams = await fetch(API_TEAMS);
   const teams = await getTeams.json();
 
-  const getPlayers = await fetch("https://api.opendota.com/api/proPlayers");
+  const getPlayers = await fetch(API_PLAYERS);
   const players = await getPlayers.json();
 
   return (

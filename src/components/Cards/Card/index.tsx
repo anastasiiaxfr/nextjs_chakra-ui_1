@@ -1,6 +1,5 @@
 "use client";
-import { useState, SyntheticEvent } from 'react'
-
+import { useState, SyntheticEvent } from 'react';
 import {
     useColorModeValue,
     VStack,
@@ -13,18 +12,28 @@ import {
     Icon,
     Image,
     AspectRatio,
-} from '@chakra-ui/react'
-import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
+} from '@chakra-ui/react';
+import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 
-export default function CardItem({ data }: any) {
-    const [isLiked, setIsLikes] = useState<boolean>(false)
+interface PlayerData {
+    account_id?: number; // Changed from id to account_id
+    name: string;
+    team_name: string;
+    avatarfull?: string; // Make avatarfull optional if it might be undefined
+}
+
+export default function CardItem({ data }: { data: PlayerData }) {
+    const [isLiked, setIsLikes] = useState<boolean>(false);
 
     const toggleIsLiked = (e: SyntheticEvent<HTMLButtonElement>) => {
-        e.preventDefault()
-        setIsLikes(!isLiked)
-    }
+        e.preventDefault();
+        setIsLikes(!isLiked);
+    };
 
-    const bg = useColorModeValue('dark.1', 'light.0')
+    const bg = useColorModeValue('dark.1', 'light.0');
+
+    // Fallback URL in case account_id is undefined
+    const playerUrl = data.account_id ? `/players/${data.account_id}` : '#';
 
     return (
         <LinkBox className='card' p='4' boxShadow='xl' borderRadius="2xl" bg={bg}>
@@ -75,7 +84,7 @@ export default function CardItem({ data }: any) {
             </AspectRatio>
             <VStack spacing={2} pt={3} alignItems="flex-start" w="full">
                 <Text isTruncated pb={1} fontSize="sm" maxWidth="full" fontWeight="700" letterSpacing="0.02em">
-                    <LinkOverlay href={`#`}>
+                    <LinkOverlay href={playerUrl}>
                         {data.name}
                     </LinkOverlay>
                 </Text>
@@ -100,5 +109,5 @@ export default function CardItem({ data }: any) {
                 </Flex>
             </VStack>
         </LinkBox>
-    )
+    );
 }
