@@ -21,9 +21,6 @@ export const theme = extendTheme({
   },
   styles: {
     global: (props: any) => ({
-      "*": {
-        borderColor: mode("dark.1", "light.1")(props),
-      },
       "::placeholder": {
         color: mode("light.2", "light.4")(props),
       },

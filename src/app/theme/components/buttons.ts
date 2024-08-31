@@ -1,3 +1,5 @@
+import { mode } from "@chakra-ui/theme-tools";
+
 const Button = {
   baseStyle: () => ({
     fontWeight: "bold",
@@ -19,13 +21,34 @@ const Button = {
         },
       },
     },
-
-    outline: {
-      color: "rgba(235, 20, 132, 0.8)",
+    outline: (props) => ({
+      padding: "0.5em 1.5em",
+      color: mode("main", "#ff6363")(props),
+      border: "2px solid",
+      borderColor: mode("main", "#ff6363")(props),
       _hover: {
-        bgColor: "rgba(235, 20, 132, 0.07)",
+        bgColor: mode("main", "red.100")(props),
+        borderColor: mode("main", "#ff6363")(props),
+        color: mode("#fff", "#ff6363")(props),
       },
-    },
+      _focus: {
+        bgColor: mode("main", "red.100")(props),
+        borderColor: mode("main", "#ff6363")(props),
+        color: mode("#fff", "#ff6363")(props),
+      },
+    }),
+    dark: (props) => ({
+      padding: "0.5em 1.5em",
+      color: mode("white", "dark")(props),
+      bgColor: mode("dark.2", "light.2")(props),
+      border: "2px solid",
+      borderColor: mode("dark.2", "light.2")(props),
+      _hover: {
+        bgColor: mode("main", "main")(props),
+        borderColor: mode("main", "main")(props),
+        color: mode("white", "white")(props),
+      },
+    }),
   },
 };
 

@@ -75,12 +75,12 @@ export default function Search() {
     });
 
     return (
-        <HStack width="full" maxW="lg" ref={containerRef} position="relative">
+        <HStack width="full" ref={containerRef} position="relative">
             <Menu isOpen={isOpenMenu} matchWidth isLazy>
                 <MenuButton as={Box} w="full">
                     <InputGroup pointerEvents="visible">
                         <InputLeftElement fontSize="2xl">
-                            <Icon as={RiSearchLine} />
+                            <Icon as={RiSearchLine} color="light.4" />
                         </InputLeftElement>
                         <Input
                             placeholder="Search players"

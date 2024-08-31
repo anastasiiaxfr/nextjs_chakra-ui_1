@@ -24,7 +24,7 @@ export default function CardItem({ data }: any) {
         setIsLikes(!isLiked)
     }
 
-    const bg = useColorModeValue('dark.1', 'light.1')
+    const bg = useColorModeValue('dark.1', 'light.0')
 
     return (
         <LinkBox className='card' p='4' boxShadow='xl' borderRadius="2xl" bg={bg}>
