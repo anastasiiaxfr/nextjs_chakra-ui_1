@@ -47,19 +47,19 @@ const Header: React.FC<{ data: any }> = ({ data }) => {
 
         <Container w="full" mt={6}>
             <SimpleGrid mx="auto" columnGap={{ base: "2em", sm: "4em" }} rowGap={2} gridTemplateColumns={{ base: "1fr 1fr", sm: "1fr 1fr", md: "repeat(4, auto)" }}>
-                <Stack gap="0" direction={{ base: 'row', md: 'column' }} textAlign="center">
+                <Stack gap="0" direction="column" textAlign="center">
                     <Text fontWeight="700" fontSize="14px" textTransform="uppercase" color="main">Rating:</Text>
                     <Text fontSize="4xl">{data.rating}</Text>
                 </Stack>
-                <Stack gap="0" direction={{ base: 'row', md: 'column' }} textAlign="center">
+                <Stack gap="0" direction="column" textAlign="center">
                     <Text fontWeight="700" fontSize="14px" textTransform="uppercase" color="main">Wins:</Text>
                     <Text fontSize="4xl">{data.wins}</Text>
                 </Stack>
-                <Stack gap="0" direction={{ base: 'row', md: 'column' }} textAlign="center">
+                <Stack gap="0" direction="column" textAlign="center">
                     <Text fontWeight="700" fontSize="14px" textTransform="uppercase" color="main">Losses:</Text>
                     <Text fontSize="4xl">{data.losses}</Text>
                 </Stack>
-                <Stack gap="0" direction={{ base: 'row', md: 'column' }} textAlign="center">
+                <Stack gap="0" direction="column" textAlign="center">
                     <Text fontWeight="700" fontSize="14px" textTransform="uppercase" color="main">Tag:</Text>
                     <Text fontSize="4xl">{data.tag}</Text>
                 </Stack>

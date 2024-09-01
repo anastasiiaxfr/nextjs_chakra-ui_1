@@ -1,11 +1,10 @@
 import { Metadata } from 'next';
-
-import { Box, Button } from '@chakra-ui/react'
+import { Box, Button } from '@chakra-ui/react';
 import PageContainer from '@/components/Layout/Container';
-import Banner from "@/components/Banner"
-import Cards from "@/components/Cards"
-import Cards2 from "@/components/Cards2"
-import { API_PLAYERS, API_TEAMS } from "./constant"
+import Banner from "@/components/Banner";
+import Cards from "@/components/Cards";
+import Cards2 from "@/components/Cards2";
+import { API_PLAYERS, API_TEAMS } from "./constant";
 
 export const metadata: Metadata = {
   title: "Dota2Bro | Team & Players catalog",
@@ -13,45 +12,55 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
+  try {
+    const [teamsResponse, playersResponse] = await Promise.all([
+      fetch(API_TEAMS),
+      fetch(API_PLAYERS)
+    ]);
 
-  const getTeams = await fetch(API_TEAMS);
-  const teams = await getTeams.json();
+    if (!teamsResponse.ok) {
+      throw new Error(`Failed to fetch teams: ${teamsResponse.statusText}`);
+    }
+    if (!playersResponse.ok) {
+      throw new Error(`Failed to fetch players: ${playersResponse.statusText}`);
+    }
 
-  const getPlayers = await fetch(API_PLAYERS);
-  const players = await getPlayers.json();
+    const teams = await teamsResponse.json();
+    const players = await playersResponse.json();
 
-  return (
-    <Box as="article">
-      <Banner />
+    return (
+      <Box as="article">
+        <Banner />
 
-      <Box as="section">
-        <PageContainer>
-          <Box as="h2" textStyle={'h2'}>Top Teams</Box>
-          <Cards2 data={teams} />
-        </PageContainer>
+        <Box as="section">
+          <PageContainer>
+            <Box as="h2" textStyle={'h2'}>Top Teams</Box>
+            <Cards2 data={teams} />
+          </PageContainer>
+        </Box>
+
+        <Box as="section">
+          <PageContainer>
+            <Box as="h2" textStyle={'h2'}>Old Players</Box>
+            <Cards data={players} />
+            <Button
+              as="a"
+              href="/players"
+              colorScheme="red"
+              variant="outline"
+              display="flex"
+              w={240}
+              mt={4}
+              mx="auto"
+            >
+              View More
+            </Button>
+          </PageContainer>
+        </Box>
       </Box>
-
-      <Box as="section">
-        <PageContainer>
-          <Box as="h2" textStyle={'h2'}>Pro Players</Box>
-          <Cards data={players} />
-
-          <Button
-            as="a"
-            href="/players"
-            colorScheme="red"
-            variant="outline"
-            display="flex"
-            w={240}
-            mt={4}
-            mx="auto"
-          >
-            View More
-          </Button>
-        </PageContainer>
-      </Box>
-
-    </Box>
-  );
+    );
+  } catch (error: any) {
+    console.error('Error fetching data:', error);
+    return <Box></Box>;
+  }
 }
-

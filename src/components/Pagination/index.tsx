@@ -1,5 +1,5 @@
 'use client'
-import { Button, HStack } from '@chakra-ui/react';
+import { Button, HStack, useBreakpointValue } from '@chakra-ui/react';
 
 interface PaginationProps {
     currentPage: number;
@@ -28,8 +28,11 @@ const Pagination = ({ currentPage, totalPages, onPageChange }: PaginationProps) 
 
     const pageNumbers = getPageNumbers();
 
+    // Determine if the screen width is less than 480px
+    const isSmallScreen = useBreakpointValue({ base: true, md: false });
+
     return (
-        <HStack spacing={4} wrap="wrap" justify="center" mt={4}>
+        <HStack spacing={4} wrap="wrap" justify="center" mt={4} w={{ base: "100%" }}>
             <Button
                 variant="dark"
                 onClick={() => onPageChange(currentPage - 1)}
@@ -37,7 +40,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }: PaginationProps) 
             >
                 Prev
             </Button>
-            {pageNumbers.map((pageNumber) => (
+            {!isSmallScreen && pageNumbers.map((pageNumber) => (
                 <Button
                     key={pageNumber}
                     p={2}
