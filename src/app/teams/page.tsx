@@ -1,5 +1,6 @@
 "use client";
 
+import React, { Suspense } from 'react';
 import {
     Stack,
     SimpleGrid,
@@ -129,66 +130,68 @@ const AllTeams: React.FC = () => {
     };
 
     return (
-        <Stack align="center" justify="center" height="100%" flex="1">
-            {loading ? (
-                <Stack align="center" justify="center" height="100%">
-                    <Spinner size="xl" />
-                </Stack>
-            ) : error ? (
-                <Stack align="center" justify="center" height="100%">
-                    <Text color="red.500">{error}</Text>
-                </Stack>
-            ) : (
-                <PageContainer>
-                    <HStack spacing={4} mb={4} justify="space-between" w="full">
-                        <Heading as="h2">All Teams</Heading>
-                        <Menu>
-                            {({ isOpen }) => (
-                                <>
-                                    <MenuButton
-                                        as={Button}
-                                        textAlign="left"
-                                        rightIcon={<Icon as={BsChevronDown} w={5} h={5} />}
-                                        variant={buttonVariant}
-                                    >
-                                        {sortOptions.find(option => option.value === sortOption)?.label || sortOptions[0].label}
-                                    </MenuButton>
-                                    <Portal>
-                                        <MenuList bg={menuBg} borderColor="transparent">
-                                            <MenuOptionGroup
-                                                value={sortOption}
-                                                type="radio"
-                                                onChange={(value) => handleSortChange(value as string)}
-                                            >
-                                                {sortOptions.map((item, i) => (
-                                                    <MenuItemOption key={i} value={item.value} bg="transparent">
-                                                        {item.label}
-                                                    </MenuItemOption>
-                                                ))}
-                                            </MenuOptionGroup>
-                                        </MenuList>
-                                    </Portal>
-                                </>
+        <Suspense fallback={<Spinner size="xl" />}>
+            <Stack align="center" justify="center" height="100%" flex="1">
+                {loading ? (
+                    <Stack align="center" justify="center" height="100%">
+                        <Spinner size="xl" />
+                    </Stack>
+                ) : error ? (
+                    <Stack align="center" justify="center" height="100%">
+                        <Text color="red.500">{error}</Text>
+                    </Stack>
+                ) : (
+                    <PageContainer>
+                        <HStack spacing={4} mb={4} justify="space-between" w="full">
+                            <Heading as="h2">All Teams</Heading>
+                            <Menu>
+                                {({ isOpen }) => (
+                                    <>
+                                        <MenuButton
+                                            as={Button}
+                                            textAlign="left"
+                                            rightIcon={<Icon as={BsChevronDown} w={5} h={5} />}
+                                            variant={buttonVariant}
+                                        >
+                                            {sortOptions.find(option => option.value === sortOption)?.label || sortOptions[0].label}
+                                        </MenuButton>
+                                        <Portal>
+                                            <MenuList bg={menuBg} borderColor="transparent">
+                                                <MenuOptionGroup
+                                                    value={sortOption}
+                                                    type="radio"
+                                                    onChange={(value) => handleSortChange(value as string)}
+                                                >
+                                                    {sortOptions.map((item, i) => (
+                                                        <MenuItemOption key={i} value={item.value} bg="transparent">
+                                                            {item.label}
+                                                        </MenuItemOption>
+                                                    ))}
+                                                </MenuOptionGroup>
+                                            </MenuList>
+                                        </Portal>
+                                    </>
+                                )}
+                            </Menu>
+                        </HStack>
+                        <SimpleGrid minChildWidth='225px' spacing='20px' w='100%'>
+                            {teams.length > 0 ? (
+                                teams.map(team => (
+                                    <Card key={team.team_id} data={team} />
+                                ))
+                            ) : (
+                                <Text>No teams found.</Text>
                             )}
-                        </Menu>
-                    </HStack>
-                    <SimpleGrid minChildWidth='225px' spacing='20px' w='100%'>
-                        {teams.length > 0 ? (
-                            teams.map(team => (
-                                <Card key={team.team_id} data={team} />
-                            ))
-                        ) : (
-                            <Text>No teams found.</Text>
-                        )}
-                    </SimpleGrid>
-                    <Pagination
-                        currentPage={currentPage}
-                        totalPages={totalPages}
-                        onPageChange={handlePageChange}
-                    />
-                </PageContainer>
-            )}
-        </Stack>
+                        </SimpleGrid>
+                        <Pagination
+                            currentPage={currentPage}
+                            totalPages={totalPages}
+                            onPageChange={handlePageChange}
+                        />
+                    </PageContainer>
+                )}
+            </Stack>
+        </Suspense>
     );
 };
 

@@ -1,13 +1,32 @@
-'use client'
+"use client";
 
-import { Stack, SimpleGrid, Button, HStack, Spinner, Heading, Text, Box, Icon, Menu, MenuButton, MenuList, MenuItemOption, MenuOptionGroup, MenuItem, Portal, useColorModeValue, useMediaQuery } from '@chakra-ui/react';
+import React, { Suspense } from 'react';
+import {
+    Stack,
+    SimpleGrid,
+    Button,
+    HStack,
+    Spinner,
+    Heading,
+    Text,
+    Box,
+    Icon,
+    Menu,
+    MenuButton,
+    MenuList,
+    MenuItemOption,
+    MenuOptionGroup,
+    MenuItem,
+    Portal,
+    useColorModeValue,
+    useMediaQuery,
+} from '@chakra-ui/react';
 import { useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { BsChevronDown } from 'react-icons/bs';
 import PageContainer from '@/components/Layout/Container';
 import Card from "@/components/Cards/Card";
 import { API_PLAYERS } from '../constant';
-
 
 interface Player {
     id: number;
@@ -121,117 +140,115 @@ const AllPlayers = () => {
     const selectedItem = selectItems.find(item => item.value === sortField);
 
     return (
-        <Stack align="center" justify="center" height="100%" flex="1">
-            {loading ? (
-                <Stack align="center" justify="center" height="100%">
-                    <Spinner size="xl" />
-                </Stack>
-            ) : error ? (
-                <Stack align="center" justify="center" height="100%">
-                    <Text color="red.500">{error}</Text>
-                </Stack>
-            ) : (
-                <PageContainer>
-                    <HStack spacing={4} mb={4} justify="space-between" w="full">
-                        <Heading as="h2">All Players</Heading>
-                        <Box position="relative">
-                            <Menu matchWidth>
-                                {({ isOpen }) => (
-                                    <>
-                                        <MenuButton
-                                            as={Button}
-                                            textAlign="left"
-                                            rightIcon={<Icon as={BsChevronDown} w={5} h={5} />}
-                                            variant="dark"
-                                        >
-                                            {selectedItem?.label || selectItems[0].label}
-                                        </MenuButton>
-                                        <Portal>
-                                            <MenuList bg={useColorModeValue('dark.1', 'light.0')} borderColor="transparent">
-                                                <MenuOptionGroup
-                                                    value={sortField}
-                                                    type="radio"
-                                                    onChange={(value) => handleSortChange(value as string)}
-                                                >
-                                                    {selectItems.map((item, i) => (
-                                                        <MenuItemOption key={i} value={item.value} bg="transparent">
-                                                            {item.label}
-                                                        </MenuItemOption>
-                                                    ))}
-                                                </MenuOptionGroup>
-                                            </MenuList>
-                                        </Portal>
-                                    </>
-                                )}
-                            </Menu>
-                        </Box>
-                    </HStack>
-                    <SimpleGrid minChildWidth='225px' spacing='20px' w='100%'>
-                        {players.length > 0 ? (
-                            players.map(player => (
-                                <Card key={player.id} data={player} />
-                            ))
-                        ) : (
-                            <Text>No players found.</Text>
-                        )}
-                    </SimpleGrid>
-
-
-                    <HStack spacing={4} mt={4} wrap="wrap" justify="center">
-                        {isSmallScreen ? (
-                            <>
-                                <Button
-                                    variant="dark"
-                                    onClick={() => handlePageChange(currentPage - 1)}
-                                    disabled={currentPage === 1}
-                                >
-                                    Previous
-                                </Button>
-                                <Button
-                                    variant="dark"
-                                    onClick={() => handlePageChange(currentPage + 1)}
-                                    disabled={currentPage === totalPages}
-                                >
-                                    Next
-                                </Button>
-                            </>
-                        ) : (
-                            <>
-                                <Button
-                                    variant="dark"
-                                    onClick={() => handlePageChange(currentPage - 1)}
-                                    disabled={currentPage === 1}
-                                >
-                                    Prev
-                                </Button>
-                                <HStack spacing={2} wrap="nowrap">
-                                    {pageNumbers.map(pageNumber => (
-                                        <Button
-                                            key={pageNumber}
-                                            variant={pageNumber === currentPage ? 'solid' : 'dark'}
-                                            colorScheme={pageNumber === currentPage ? 'red' : 'gray'}
-                                            onClick={() => handlePageChange(pageNumber)}
-                                            p={2}
-                                        >
-                                            {pageNumber}
-                                        </Button>
-                                    ))}
-                                </HStack>
-                                <Button
-                                    variant="dark"
-                                    onClick={() => handlePageChange(currentPage + 1)}
-                                    disabled={currentPage === totalPages}
-                                >
-                                    Next
-                                </Button>
-                            </>
-                        )}
-                    </HStack>
-
-
-                </PageContainer>
-            )}
-        </Stack>
+        <Suspense fallback={<Spinner size="xl" />}>
+            <Stack align="center" justify="center" height="100%" flex="1">
+                {loading ? (
+                    <Stack align="center" justify="center" height="100%">
+                        <Spinner size="xl" />
+                    </Stack>
+                ) : error ? (
+                    <Stack align="center" justify="center" height="100%">
+                        <Text color="red.500">{error}</Text>
+                    </Stack>
+                ) : (
+                    <PageContainer>
+                        <HStack spacing={4} mb={4} justify="space-between" w="full">
+                            <Heading as="h2">All Players</Heading>
+                            <Box position="relative">
+                                <Menu matchWidth>
+                                    {({ isOpen }) => (
+                                        <>
+                                            <MenuButton
+                                                as={Button}
+                                                textAlign="left"
+                                                rightIcon={<Icon as={BsChevronDown} w={5} h={5} />}
+                                                variant="dark"
+                                            >
+                                                {selectedItem?.label || selectItems[0].label}
+                                            </MenuButton>
+                                            <Portal>
+                                                <MenuList bg={useColorModeValue('dark.1', 'light.0')} borderColor="transparent">
+                                                    <MenuOptionGroup
+                                                        value={sortField}
+                                                        type="radio"
+                                                        onChange={(value) => handleSortChange(value as string)}
+                                                    >
+                                                        {selectItems.map((item, i) => (
+                                                            <MenuItemOption key={i} value={item.value} bg="transparent">
+                                                                {item.label}
+                                                            </MenuItemOption>
+                                                        ))}
+                                                    </MenuOptionGroup>
+                                                </MenuList>
+                                            </Portal>
+                                        </>
+                                    )}
+                                </Menu>
+                            </Box>
+                        </HStack>
+                        <SimpleGrid minChildWidth='225px' spacing='20px' w='100%'>
+                            {players.length > 0 ? (
+                                players.map(player => (
+                                    <Card key={player.id} data={player} />
+                                ))
+                            ) : (
+                                <Text>No players found.</Text>
+                            )}
+                        </SimpleGrid>
+                        <HStack spacing={4} mt={4} wrap="wrap" justify="center">
+                            {isSmallScreen ? (
+                                <>
+                                    <Button
+                                        variant="dark"
+                                        onClick={() => handlePageChange(currentPage - 1)}
+                                        disabled={currentPage === 1}
+                                    >
+                                        Previous
+                                    </Button>
+                                    <Button
+                                        variant="dark"
+                                        onClick={() => handlePageChange(currentPage + 1)}
+                                        disabled={currentPage === totalPages}
+                                    >
+                                        Next
+                                    </Button>
+                                </>
+                            ) : (
+                                <>
+                                    <Button
+                                        variant="dark"
+                                        onClick={() => handlePageChange(currentPage - 1)}
+                                        disabled={currentPage === 1}
+                                    >
+                                        Prev
+                                    </Button>
+                                    <HStack spacing={2} wrap="nowrap">
+                                        {pageNumbers.map(pageNumber => (
+                                            <Button
+                                                key={pageNumber}
+                                                variant={pageNumber === currentPage ? 'solid' : 'dark'}
+                                                colorScheme={pageNumber === currentPage ? 'red' : 'gray'}
+                                                onClick={() => handlePageChange(pageNumber)}
+                                                p={2}
+                                            >
+                                                {pageNumber}
+                                            </Button>
+                                        ))}
+                                    </HStack>
+                                    <Button
+                                        variant="dark"
+                                        onClick={() => handlePageChange(currentPage + 1)}
+                                        disabled={currentPage === totalPages}
+                                    >
+                                        Next
+                                    </Button>
+                                </>
+                            )}
+                        </HStack>
+                    </PageContainer>
+                )}
+            </Stack>
+        </Suspense>
     );
 };
 
