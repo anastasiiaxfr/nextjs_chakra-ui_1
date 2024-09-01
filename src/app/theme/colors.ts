@@ -13,10 +13,6 @@ const colors = {
     1: "#1f1b2e",
     2: "#2d2a39",
   },
-  grad: {
-    1: "linear-gradient(#ca0511, #e30613)",
-  },
-
   text: {
     dark: {
       0: "#fff",

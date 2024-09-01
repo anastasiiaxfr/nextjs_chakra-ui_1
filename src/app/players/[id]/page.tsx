@@ -38,7 +38,7 @@ const PlayerPage = async ({ params }: { params: { id: string } }) => {
         const playerData = await fetchPlayerData(id);
 
         return <PlayerClient playerData={playerData} />;
-    } catch (error) {
+    } catch (error: any) {
         return <div>Error: {error.message}</div>;
     }
 };

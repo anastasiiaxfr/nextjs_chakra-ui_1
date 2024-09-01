@@ -22,7 +22,7 @@ interface PlayerData {
     avatarfull?: string; // Make avatarfull optional if it might be undefined
 }
 
-export default function CardItem({ data }: { data: PlayerData }) {
+export default function CardItem({ data }: { data: any }) {
     const [isLiked, setIsLikes] = useState<boolean>(false);
 
     const toggleIsLiked = (e: SyntheticEvent<HTMLButtonElement>) => {

@@ -14,7 +14,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode; }>) {
   return (
-    <html lang="en" className={`${fonts.montserrat.variable} ${fonts.lato.variable}`}>
+    <html lang="en" className={`${fonts.lato.variable}`}>
       <body>
         <Providers>
           <VStack

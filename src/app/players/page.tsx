@@ -38,8 +38,8 @@ const AllPlayers = () => {
 
     useEffect(() => {
         // Extract page number and sort field from URL
-        const pageParam = searchParams.get('page');
-        const sortParam = searchParams.get('sort');
+        const pageParam = searchParams?.get('page');
+        const sortParam = searchParams?.get('sort');
         const pageNumber = pageParam ? parseInt(pageParam, 10) : 1;
         const sortBy = sortParam || 'name';
 

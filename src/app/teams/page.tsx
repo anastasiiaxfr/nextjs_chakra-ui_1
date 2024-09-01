@@ -51,8 +51,12 @@ const AllTeams: React.FC = () => {
     const [totalPages, setTotalPages] = useState<number>(1);
     const [sortOption, setSortOption] = useState<string>('rating'); // Default sort option is 'rating'
 
+    // Move useColorModeValue to top level
+    const menuBg = useColorModeValue('dark.1', 'light.0');
+    const buttonVariant = 'dark'; // Adjust if necessary
+
     useEffect(() => {
-        const pageParam = searchParams.get('page');
+        const pageParam = searchParams?.get('page');
         const pageNumber = pageParam ? parseInt(pageParam, 10) : 1;
         setCurrentPage(pageNumber);
     }, [searchParams]);
@@ -145,12 +149,12 @@ const AllTeams: React.FC = () => {
                                         as={Button}
                                         textAlign="left"
                                         rightIcon={<Icon as={BsChevronDown} w={5} h={5} />}
-                                        variant="dark"
+                                        variant={buttonVariant}
                                     >
                                         {sortOptions.find(option => option.value === sortOption)?.label || sortOptions[0].label}
                                     </MenuButton>
                                     <Portal>
-                                        <MenuList bg={useColorModeValue('dark.1', 'light.0')} borderColor="transparent">
+                                        <MenuList bg={menuBg} borderColor="transparent">
                                             <MenuOptionGroup
                                                 value={sortOption}
                                                 type="radio"

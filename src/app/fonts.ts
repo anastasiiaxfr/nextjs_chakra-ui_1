@@ -1,10 +1,10 @@
 // app/fonts.ts
-import { Montserrat, Lato } from "next/font/google";
+import { Lato } from "next/font/google";
 
-const montserrat = Montserrat({
-  subsets: ["latin"],
-  variable: "--font-montserrat",
-});
+// const montserrat = Montserrat({
+//   subsets: ["latin"],
+//   variable: "--font-montserrat",
+// });
 
 const lato = Lato({
   subsets: ["latin"],
@@ -13,6 +13,5 @@ const lato = Lato({
 });
 
 export const fonts = {
-  montserrat,
   lato,
 };

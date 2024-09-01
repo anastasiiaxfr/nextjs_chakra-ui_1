@@ -34,9 +34,11 @@ export default function Search() {
 
     const containerRef = useRef<HTMLDivElement>(null);
 
+    // Move hooks to the top level
     const inputBg = useColorModeValue('dark.2', 'transparent');
     const inputBdHover = useColorModeValue('dark.1', 'light.2');
     const menuColor = useColorModeValue('gray.300', 'gray.700');
+    const menuBg = useColorModeValue('dark.1', 'light.0');
 
     // Handle input change
     const handleChange = async (e: SyntheticEvent<HTMLInputElement>) => {
@@ -106,7 +108,7 @@ export default function Search() {
                         position="absolute"
                         top="100%"
                         width="full"
-                        bg={useColorModeValue("dark.1", "light.0")}
+                        bg={menuBg}
                         borderColor="transparent"
                         boxShadow="lg"
                         maxH="300px"

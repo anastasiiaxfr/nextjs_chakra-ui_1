@@ -21,7 +21,7 @@ const Button = {
         },
       },
     },
-    outline: (props) => ({
+    outline: (props: any) => ({
       padding: "0.5em 1.5em",
       color: mode("main", "#ff6363")(props),
       border: "2px solid",
@@ -37,7 +37,7 @@ const Button = {
         color: mode("#fff", "#ff6363")(props),
       },
     }),
-    dark: (props) => ({
+    dark: (props: any) => ({
       padding: "0.5em 1.5em",
       color: mode("white", "dark")(props),
       bgColor: mode("dark.2", "white")(props),

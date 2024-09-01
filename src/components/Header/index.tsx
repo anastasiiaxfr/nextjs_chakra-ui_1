@@ -32,7 +32,7 @@ const Header = () => {
             top={0} zIndex={2} backdropFilter="saturate(180%) blur(7px)"
         >
             <Flex align="center" justify="space-between" gap={6}>
-                <Logo height={40} />
+                <Logo height={35} />
                 <Box display={{ base: 'none', md: 'flex' }} maxW="lg" w="full"><Search /></Box>
                 <HStack w="" ml="auto" mr={0} display={{ base: 'none', lg: 'flex' }}>
                     <List display="inline-flex" gap={6}>
