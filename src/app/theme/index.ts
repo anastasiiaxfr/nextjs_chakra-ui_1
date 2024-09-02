@@ -21,6 +21,10 @@ export const theme = extendTheme({
   },
   styles: {
     global: (props: any) => ({
+      '*::selection': {
+        background: 'main', 
+        color: 'white',
+      },
       "::placeholder": {
         color: mode("light.2", "light.4")(props),
       },
