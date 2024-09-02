@@ -116,7 +116,7 @@ export default function Search() {
                     >
                         {loading && <MenuItem bg="transparent" color={menuColor}>Loading...</MenuItem>}
                         {error && <MenuItem bg="transparent" color={menuColor}>{error}</MenuItem>}
-                        {!loading && !error && players.length === 0 && <MenuItem>No players found</MenuItem>}
+                        {!loading && !error && players.length === 0 && <MenuItem bg="transparent" color={menuColor}>No players found</MenuItem>}
                         {players.length > 0 && (
                             <>
                                 <MenuGroup>
