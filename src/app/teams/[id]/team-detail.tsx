@@ -110,7 +110,7 @@ const TeamSingle: React.FC<TeamSingleProps> = ({ teamData }) => {
                             data={player}
                         />
                     )) : (
-                        <Text textAlign="center">No players found</Text>
+                        <Text textAlign="center">looking for players</Text>
                     )}
                 </SimpleGrid>
             </PageContainer>
